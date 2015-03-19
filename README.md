@@ -1,2 +1,2 @@
 # server7
-server number 7
+This is Server number 7
