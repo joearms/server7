@@ -19,9 +19,9 @@
 
 batch([Atom]) ->
     File = atom_to_list(Atom),
-    compile(File),
+    file:set_cwd(".."),    
+    compile("./site/" ++ File),
     init:stop().
-
 
 get_page(Mod, Func, Args) ->
     case (catch get_page0(Mod, Func, Args)) of
@@ -36,19 +36,26 @@ get_page0(Mod, Func, Args) ->
     maps:get(html, Map).
 
 compile(File) ->
-    %% File something like /site/test1.web
-    ?trace({compile,File}),
+    %% File is the input file :: something like /site/bingo.web
+    %% We extract the module "bingo"
+    %% We write two output files tmp/bingo.erl.tmp tmp/bngo.erl
+    CWD = file:get_cwd(),
+    %% ?trace({compile,File, cwd, CWD}),
     Segments = get_segments(File),
     Mod = filename:basename(File,".web"),
     %% io:format("Segments=~p~n",[Segments]),
     Processed = [process_segment(I) || I <- Segments],
     Frags = make_fragments(Processed),
-    Erl = make_erlang(Processed),
-    Out = "../tmp/" ++ filename:rootname(File,".web") ++ ".erl.tmp",
-    ?trace({out,Out,mod,Mod}),
+    Erl   = make_erlang(Processed),
+    Out      = "./tmp/" ++ Mod ++ ".erl.tmp",
+    FinalErl = "./tmp/" ++ Mod ++ ".erl",
+    %% ?trace({out,Out,module,Mod,finalErl,FinalErl}),
     %% pull all the erlang to the front so we get module/imports ok
-    file:write_file(Out, [header(Mod),Erl, Frags]),
-    FinalErl = "../tmp/" ++ filename:rootname(File,".web") ++ ".erl",
+    Stuff = [header(Mod),Erl, Frags],
+    %% ?trace({stuff,Stuff}),
+    %% elib2_misc:check_io_list(Stuff),
+    Res = file:write_file(Out, Stuff),
+    %% ?trace({pretty,Out,FinalErl,res,Res}),
     pretty(Out, FinalErl),
     io:format("Created: ~s~n",[FinalErl]).
 

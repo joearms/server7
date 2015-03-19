@@ -34,7 +34,7 @@ body {margin-left:100px}
 @function{demo1}
 
 <style>
-h1 {color: red}
+h1 {color: blue}
 </style>
 
 <h1 class='red'>I'm a red header1</h1>
