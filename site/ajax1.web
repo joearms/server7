@@ -5,8 +5,8 @@
 
 <p>Ajax
 
-<button onclick="test()">test</button>
-
+<button onclick="test()">test echo</button>
+<p>This calls <b>ajax1:echo(X)</b> below:
 <div id="result"></div>
 
 <script>
@@ -35,7 +35,7 @@ echo(X) ->
 <script>
 
 // Call the erlang function mod:func(Args)
-//   Args will be the ERlang representation of JSON message
+//   Args will be the Erlang representation of JSON message
 //   Wait for a reply from Erlang - then evaluate callback(ReplyString)
 
 function ajax_query(mod, func, args, callback){
@@ -43,7 +43,7 @@ function ajax_query(mod, func, args, callback){
     console.log("query", [mod,func,args]);
     xmlhttp=new XMLHttpRequest();
     // note GET fails here ... no data is sent you must use POST
-    xmlhttp.open("POST","weblib?mod="+mod+"&func="+func,true);   
+    xmlhttp.open("POST","/weblib?mod="+mod+"&func="+func,true);   
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange=function()
     {
