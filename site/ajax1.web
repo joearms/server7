@@ -1,0 +1,62 @@
+@function{main}
+
+<!-- load the library -->
+<? jslib(void) ?>
+
+<p>Ajax
+
+<button onclick="test()">test</button>
+
+<div id="result"></div>
+
+<script>
+function test(){
+    o = document.getElementById('result');
+    o.innerHTML += "<br>test";
+    callback = function(x){
+    	     document.getElementById("result").innerHTML = x;
+	     };
+    ajax_query('ajax1', 'echo', {a:'hello', b:1}, callback);		
+    }
+</script>
+
+@erlang
+
+%% this code runs in the server
+%% and returns HTML
+
+echo(X) ->
+   lib_html:pre(X).
+
+@function{jslib}
+
+<!-- put your js here -->
+
+<script>
+
+// Call the erlang function mod:func(Args)
+//   Args will be the ERlang representation of JSON message
+//   Wait for a reply from Erlang - then evaluate callback(ReplyString)
+
+function ajax_query(mod, func, args, callback){
+    var xmlhttp;
+    console.log("query", [mod,func,args]);
+    xmlhttp=new XMLHttpRequest();
+    // note GET fails here ... no data is sent you must use POST
+    xmlhttp.open("POST","weblib?mod="+mod+"&func="+func,true);   
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        callback(xmlhttp.responseText);
+     }
+    };
+    var s = "string=" + JSON.stringify(args);
+    console.log('s',s);
+    xmlhttp.send(s);
+}
+
+</script>
+
+	

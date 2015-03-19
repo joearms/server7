@@ -1,0 +1,6 @@
+#{path => [],
+  description => "My *simple* web server",
+  start => {esimple_webserver, batch, []},
+  env  => []}.
+
+

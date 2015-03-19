@@ -1,0 +1,192 @@
+<style>
+.lightbox {
+
+    /** Hide the lightbox */
+    display: none;
+	
+    /** Apply basic lightbox styling */
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color:#333333;
+}
+
+.lightbox:target {
+    /** Show lightbox when it is target */
+    display: block;
+    outline: none;
+}
+
+.lightbox .box {
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    min-width:500px;
+    margin: 2% auto;
+    padding:20px;
+    background-color:#FFF;
+    box-shadow: 0px 1px 26px -3px #777777; 
+   }
+
+.lightbox .title {
+    margin:0;
+    padding:0 0 10px 0px;
+    border-bottom:1px #ccc solid;
+    font-size:22px;
+}
+
+.lightbox .content {
+    display:block;
+    padding:10px 0 0 0px;
+    font-size:18px;
+    line-height:22px;
+}
+
+.lightbox .close {
+    float:right;
+    display:block;
+    text-decoration:none;
+    font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:22px;
+    color:#858585;
+}
+</style>
+
+
+<style>
+
+body {
+  margin-left:3em;
+  width:80%
+}
+
+form.myform table {
+  border:0;
+  padding:2;
+  spacing:1; 
+  width:600; 
+  bgcolor:#efefef;
+  border: 1px solid #777777;
+}
+  
+form.myform td {
+  vertical-align:top;
+  background-color:#cdcdcd;
+}
+
+
+form.myform input {
+    width:100%;
+}
+
+form.myform td textarea {
+    width:100%;
+
+}
+</style>
+
+
+
+<h1>Pure CSS Modal Window Effect</h1>
+
+<li><a href="my_modal1.html">my modal1</a>
+
+<button><a href="#form1">form_modal</a></button>
+
+<div class="lightbox" id="form1">
+  <div class="box">
+    <a class="close" href="#">X</a>
+    <div>
+      <form class="myform" id="form2" onsubmit="return false;">
+	<input type="hidden" name="fid" value="abcdef124"/>
+	<table> 
+	  <colgroup align = "left" width="30%"/>
+	  <colgroup width="70%"/>
+	  
+	  <tr>
+	    <td>Name: <font color="red">*</font></td>
+	    <td><input type="text" name="name" value="fred"/></td>
+	  </tr>
+	  
+	  <tr>
+	    <td>Birth sign:</td>
+	    <td>
+	      <select name="birth_sign" >
+		<option value="Aquarius">Aquarius</option>
+		<option value="Pisces">Pisces</option>
+		<option value="-- Choose an option from list --" selected="">
+		  -- Choose an option from list --
+		</option>
+	      </select>
+	    </td>
+	  </tr>
+	  
+	  <tr>
+	    <td>What does your program do:</td>
+            <td><textarea name="txt" rows="5">some
+stuff</textarea></td>
+	  </tr>
+	  
+	  <tr>
+	    <td>Check your interests:</td>
+	    <td>
+	      <input type="checkbox" style="width:20px" name="fishing" checked="checked"/>fishing
+	      <input type="checkbox" style="width:20px" name="cycling"/>cycling<br/>
+	    </td>
+	  </tr>
+	  
+	  <tr>
+	    <td>Select this:</td>
+	    <td>
+	      <input type="radio" style="width:20px" name="radio1" value="A"/>A
+	      <input type="radio" style="width:20px" name="radio1" value="B" checked="checked"/>B
+	      <input type="radio" style="width:20px" name="radio1" value="C"/>C
+	    </td>
+	  </tr>
+	  
+	  <tr>
+	    <td colspan="2">  
+	      <button><a href="#">Close</a></button>
+	      <button><a href="#" onclick="read_me()" >Submit</a></button> 
+	    </td> 
+	  </tr> 
+	</table> 
+      </form>
+    </div>
+  </div>
+</div>
+
+<h1>read</h1>
+<div id="result"></div>
+
+<script>
+
+function get_radio(r)
+{
+    for(var i = 0; i < r.length; i++)
+    {
+	if(r[i].checked)return r[i].value;
+    }
+    return '';
+}
+   
+function read_me(){
+    console.log('read');
+    f = document.getElementById('form2');
+    var name = f.elements["name"].value;
+    var fid = f.elements["fid"].value;
+    var birth = f.elements["birth_sign"].value;
+    var txt = f.elements["txt"].value;
+    var fishing = f.elements["fishing"].checked;
+    var radio = get_radio(f.elements["radio1"]);
+    var o = document.getElementById('result');
+    o.innerHTML = 'name = '+name+'<br>fid = '+fid+'<br> birth = '+ birth +
+	'<br>txt = '+txt+
+	'<br>fishing = '+fishing+'<br>radio = '+radio;
+}
+</script>
+
+

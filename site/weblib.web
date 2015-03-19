@@ -1,0 +1,48 @@
+@function{main}
+
+<!-- load the library -->
+<? jslib(void) ?>
+
+<p>Ajax
+
+<button onclick="test()">test</button>
+
+<div id="result"></div>
+
+<script>
+function test(){
+    o = document.getElementById('result');
+    o.innerHTML += "<br>test";
+    ajax_query('weblib', 'echo', {a:'hello', b:1});		
+    }
+</script>
+
+@function{jslib}
+
+<!-- put your js here -->
+
+<script>
+
+function ajax_query(mod, func, args){
+    var xmlhttp;
+    console.log("query", [mod,func,args]);
+    xmlhttp=new XMLHttpRequest();
+    // note GET fails here ... no data is sent you must use POST
+    xmlhttp.open("POST","weblib?mod="+mod+"&func="+func,false);   
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var s = "string=" + JSON.stringify(args);
+    console.log('s',s);
+    xmlhttp.send(s);
+    document.getElementById("result").innerHTML=xmlhttp.responseText;
+}
+
+</script>
+
+@erlang
+
+%% this code runs in the server
+%% and returns HTML
+
+echo(X) ->
+	lib_html:pre(X).
+	

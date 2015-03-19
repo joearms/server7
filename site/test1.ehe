@@ -1,0 +1,4 @@
+<h1>test1.ehe</h1>
+
+<li> 1 = <? 1 ?>
+<li> hello = <? io_lib:format("hello",[]) ?>

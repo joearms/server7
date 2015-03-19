@@ -1,0 +1,11 @@
+#{path => ["${HOME}/Dropbox/experiments/server6/src"],
+  description => "file name <-> integer (disk based db)",     
+  %% start => {filename_db, start_link, []},
+  start => {db_ets_pairs, start, [filename_db]},
+  env => []}.
+
+%% this provides permanent FileName <-> Integer map
+%% db_ets_pairs:index2bin(Int) -> File::bin
+%% db_ets_pairs:bin2index(File::binary()) -> File
+
+

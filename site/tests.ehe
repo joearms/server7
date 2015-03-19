@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset='UTF-8'>
+<link rel='stylesheet' href='/layout_wide_sb.css' />
+
+<body>
+  <div id="header">
+    <?e SYS:banner() ?>
+ </div>
+  
+ <div id="sidebar">
+   Sidebar
+ </div>
+
+ <div is="content">
+   <h1>EHE tests</h1>
+   
+   <h2>Parameter substitution</h2>
+    
+   <?e Me = "joe", "" ?>
+   
+   <p>Hello <?e Me ?></p>
+
+   <h2>Computatation</h2>
+
+   <?e N = 50, " " ?>
+  
+   <?e F = fun(G,0) -> 1;(G,N) -> N*G(G,N-1) end,
+     Fact = fun(N) -> F(F, N) end,"" ?>
+
+   <p> Factorial <?e N ?> = <?e Fact(N) ?> </p>
+
+   <h2>Named functions</h2>
+
+   
+   <?e def(twice,1,fun(N) -> N*2 end), 
+       def(thrice, 1, fun(N) -> N*3 end),
+       def(fac, 1, fun(0) -> 1; (N) -> N * fac(N-1) end), "" ?>
+
+   <p> 6 = <?e twice(3) ?>; 9 = <?e thrice(3) ?>
+   <p>fac(50) = <?e fac(50) ?>
+
+   <h2>Authentication</h2>
+
+   <ul>
+     <li><a href="/status.ehe">site/status.ehe</a></li>
+   </ul>
+   
+   <h2>Authentication data</h2>
+
+   <p><b>&lt;?e SYS:auth_user_name() ?></b></p>
+   <?e SYS:auth_user_name() ?>
+    
+    <h2>Comands to show the bindings</h2>
+    
+    <hr/>
+    <p><b>&lt;?e show_bindings() ?></b></p>
+      
+    <?e show_bindings() ?>
+    
+    <hr/>
+    <p><b>&lt;?e show_all_bindings() ?></b></p>
+      
+    <?e show_all_bindings() ?>
+  </div>
+</body>
+

@@ -1,0 +1,174 @@
+<meta http-equiv="Content-Language" content="en">
+<link rel="stylesheet" href="./layout_left.css" />
+<script src="./jquery-2.1.3.min.js"></script>
+
+<script>
+
+var editing,c;
+
+function toggle_edit()
+{
+    switch(editing){
+    case true:
+	c.get(0).contentEditable = true;
+	c.css({background:"#eeeeee"});
+	$("#header").html("<h2>You can now edit this document - but you can't save the results</h2>");
+	editing=false;
+	break;
+    case false:
+	c.get(0).contentEditable = false;
+	c.css({background:"white"});
+	editing=true;
+	// $("#header").html("<h2>This document cannot be edited</h2>");
+        break;
+    }
+}
+
+$(document).ready(function(){
+     editing=false;
+     c = $("#content");
+     b = $("<button>toggle edit</button>").click(toggle_edit);
+     $("#sidebar").append(b);
+     toggle_edit();
+});
+</script>
+
+<body>
+
+<div id="header">
+   header</div>
+<div id="sidebar">
+   side </div>
+<div id="content">
+ 
+
+  <table class="pinboard">
+    <tr>
+      <td><b>Now</b></td>
+      <td><b>Later</b></td>
+      <td><b>Done</b></td>
+    </tr>
+    <tr>
+      <td id="now" valign="top", width = "33%">
+	<article class="post">
+	  <div class="buttons">
+	    <button class="btiddler">&nbsp;&nbsp;&nbsp;</button>
+	    <button class="btiddler">done</button>
+	    <button class="btiddler">later</button>
+	    <button class="btiddler">edit</button>
+	    <button class="btiddler">up</button>
+	    <button class="btiddler">down</button>
+	  </div>
+	  <p>&nbsp;</p>
+	  <img src="./tree1.jpeg"/>
+	  <p><a href="file:///Users/joearmstrong/Dropbox/experiments/gallery/widgets/widgets.html">here</a>
+	  
+	  <p>This is a tree.</p>
+	</article>
+
+	<article class="post">
+	  
+	  <div class="buttons">
+	    abc
+	    <button class="later_button">later</button>
+	    <button class="later_button">done</button>
+	    <button class="later_button">edit</button>
+	    <button class="later_button">up</button>
+	    <button class="later_button">down</button>
+	  </div>
+	  
+	  <p>This is a just some text.</p>
+	</article>
+
+	
+	<article class="post">
+	  <h1>Headline</h1>
+	  <img src="./tree2.jpeg"/>
+	  <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsLorem ipsum dolor sit amet. Lorem ipsum dolor
+	  sit amet. Lorem ipsum dolor sit amet. um dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet.
+	  </p>
+	</article>
+
+	<article class="post">
+	  <h1>Headline</h1>
+	  <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sLorem
+	  ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
+	  ipsum dolor sit amet. it amet.</p>
+	</article>
+
+	<article class="post">
+	  <h1>Headline</h1>
+	  <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet.  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet.</p>
+	</article>
+      </td>
+      <td id="later" valign="top" width = "33%">
+	<article class="post">
+	  <h1>Headline 1</h1>
+	  <img src="./post1.jpeg"/>
+	    <p>Lorem ipsum dolor sLorem </p>
+	  </article>
+	  
+	  <article class="post">
+	    <img src="./post2.jpeg"/>
+	  </article>
+	    
+	  <article class="post">
+	    <h1>Headline</h1>
+	    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	    amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	    amet. </p>
+	  </article>
+
+	  <article class="post">
+	    <h1>Headline</h1>
+	    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	    amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	    amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	    amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	    amet.</p>
+	  </article>
+      </td>
+      <td id="done" valign = "top" width = "33%">
+	<article class="post">
+	  <img src="./flag1.jpeg"/>
+	  <h1>Headline</h1>
+	  
+	  <p>Lorem ipsum dolor siLorem ipsum dolor sit amet. Lorem
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet.</p>
+	</article>
+
+	<article class="post">
+	  <h1>Headline</h1>
+	  <img src="./flag2.jpeg"/>
+	  <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet.</p>
+	</article>
+
+	<article class="post">
+	  <img src="./flag3.jpeg"/>
+	  <h1>Headline</h1>
+	  <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+	  amet.</p>
+	</article>
+      </td>
+    </tr>
+  </table>
+</div>

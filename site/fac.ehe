@@ -1,0 +1,7 @@
+<h1>Factorial test</h1>
+
+<?e def(fac, 1, fun(0) -> 1; (N) -> N * fac(N-1) end), "" ?>
+
+<?e N = 30, "" ?>
+
+<p>Factorial <?e N ?> = <?e fac(N) ?>

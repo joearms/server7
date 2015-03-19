@@ -1,0 +1,6 @@
+#{path => [],
+  description => "cowboy -- the http server",
+  start => {application, start, [cowboy]},
+  env => []}.
+
+

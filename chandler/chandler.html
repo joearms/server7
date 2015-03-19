@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)http://media.kulturbanause.de/blog/2014/03/responsive-pinterest-style-versuch3.html -->
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Pinterest-Style-Layout Versuch 3 – Manuelle Spalten</title>
+<style>
+
+* { box-sizing:border-box; }
+
+body {
+	background:#eee;
+}
+
+.column {
+  float:left;
+  padding:10px;
+  background: red;
+  margin-bottom:10px;
+}
+
+.column:nth-of-type(2) {background:blue;}
+
+.column:nth-of-type(3) {background:lime;}
+
+.post {
+  background:white;
+  width:95%;
+  padding:1em;
+  float:left;
+  margin:0 1em 2em 1em;
+  border:1px solid #ccc;
+  border-bottom-width:3px;
+}
+
+.post img {width:100%}
+
+
+@media screen and (min-width:500px) {
+ .column { width:50%; }
+}
+
+@media screen and (min-width:800px) {
+  .column {  width:33%;}
+}
+
+
+</style>
+
+</head>
+
+<body>
+  <p>Integrate with the layout
+  in Dropbox/experiments/wombats/ws/experiments/contentEditableDemo/mini4.html
+  </p>
+  
+  <div class="column">
+    <h1>Now</h1>
+    <article class="post">
+      <h1>Tree 1</h1>
+      <button>later</button>
+      <button>done</button>
+      <p></p>
+      
+      <img src="./tree1.jpeg"/>
+      <p>This is a tree.</p>
+    </article>
+    
+    <article class="post">
+      <h1>Headline</h1>
+      <img src="./tree2.jpeg"/>
+      <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsLorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. um dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+
+
+<article class="post">
+	<h1>Headline</h1>
+    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sLorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. it amet.</p>
+</article>
+
+<article class="post">
+	<h1>Headline</h1>
+    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+</div>
+
+<div class="column">
+  <h1>Later</h1>
+  <article class="post">
+    <h1>Headline 1</h1>
+    <img src="./post1.jpeg">
+      <p>Lorem ipsum dolor sLorem </p>
+    </article>
+
+    <article class="post">
+      <img src="./post2.jpeg">
+      </article>
+      
+      <article class="post">
+	<h1>Headline</h1>
+	<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
+	
+</article>
+
+<article class="post">
+	<h1>Headline</h1>
+	<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+</div>
+
+<div class="column">
+  <h1>Done</h1>
+  
+  <article class="post">
+  <img src="./flag1.jpeg"/>
+  <h1>Headline</h1>
+  
+    <p>Lorem ipsum dolor siLorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. t amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+
+<article class="post">
+	<h1>Headline</h1>
+	<img src="./flag2.jpeg"/>
+	<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+
+<article class="post">
+  <img src="./flag3.jpeg"/>
+	<h1>Headline</h1>
+    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+
+<article class="post">
+	<h1>Headline</h1>
+    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+
+<article class="post">
+	<h1>Headline</h1>
+    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. LorLorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. em ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+
+<article class="post">
+	<h1>Headline</h1>
+    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+</article>
+
+
+</div>
+
+
+
+</body></html>

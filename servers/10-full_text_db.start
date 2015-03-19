@@ -1,0 +1,6 @@
+#{path => [],
+  description => "full text db",     
+  start => {full_text_db, start, []},
+  env => []}.
+
+

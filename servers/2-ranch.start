@@ -1,0 +1,8 @@
+#{%% path => ["${HOME}/Dropbox/experiments/erl_github_imports/deps/ranch/ebin"],
+
+path => [],	
+  description => "connection manager",
+  start => {application, start, [ranch]},
+  env => []}.
+
+

@@ -1,0 +1,3 @@
+<h1>Tag checker</h1>
+
+<? elib2_erl_metadata:report("./src") ?>

@@ -1,0 +1,15 @@
+<h1>Index.ehe</h1>
+
+<?e SYS:list_files() ?>
+
+
+<p>Before:<?e SYS:help() ?> after.
+
+<pre>
+<?e
+   {ok, L} = file:list_dir("."),
+   lists:flatten([["<li>",I] || I <- L])
+?>
+</pre>
+
+<p>List the contents of all the files in the zip archive???

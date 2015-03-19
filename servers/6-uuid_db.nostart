@@ -1,0 +1,11 @@
+#{path => ["${HOME}/Dropbox/experiments/server6/src"],
+  description => "uuid <-> location database (disk resident)",
+  start => {uuid_db, start_link, []},
+  env => []}.
+
+%% uuid_db:whereis("UUID")    -> [Loc] (Loc is a filename)
+%% uuid_db:register(Loc,UUID) -> add an entry
+%% uuid_db:gc()               -> GC the UUID table
+ 
+
+

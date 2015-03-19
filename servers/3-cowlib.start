@@ -1,0 +1,6 @@
+#{path => [],
+  description => "cowboy library",
+  start => {application, start, [cowlib]},
+  env => []}.
+
+

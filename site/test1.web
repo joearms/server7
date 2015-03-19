@@ -1,0 +1,236 @@
+@function{main}
+
+<style>
+body {margin-left:100px}
+</style>
+
+<h1>Examples</h1>
+
+<li><a href="./test1.web?page=run_demo&arg=demo1">click me</a>
+
+
+<? examples([{demo1,"styling with a class"},
+             {demo2,"reversed text inside an h1"},
+	     {demo3,"factorial"},
+	     {demo4,"inline javascript"},
+	     {demo5,"svg1"},
+	     {demo6,"piano"},
+	     {demo7,"ajax round trip"},
+             {demo8,"an entry"},
+             {demo9,"a form"}
+]) ?>
+
+
+@function{run_demo}
+
+<h1>Input</h1>
+
+<? show_the_code(In) ?>
+
+<h1>Output</h1>
+
+<? run_the_code(In) ?>
+
+@function{demo1}
+
+<style>
+h1 {color: red}
+</style>
+
+<h1 class='red'>I'm a red header1</h1>
+
+<p>We can style objects using CSS
+
+@function{demo2}
+
+<p>CSS cannot reverse characters in a string but Erlang can
+
+<h1> <? #{html => lists:reverse("I'm a header")} ?> </h1>
+
+@function{demo3}
+
+<p>Factorial 40 is <? factorial(40) ?>
+
+@function{demo4}
+
+<button id="a" onclick="woo()">Click me and be amazed</button>
+
+<script>
+var n = 0;
+
+function woo(){
+   n++;
+   document.getElementById('a').innerHTML = "you clicked the button " + n + " times";
+}
+
+</script>
+
+@function{demo5}
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="green" 
+	  stroke-width="4" fill="yellow" 
+	  />
+</svg>
+
+@function{demo6}
+
+<? piano_widget(a) ?>
+
+
+
+@function{demo7}
+
+<entry id="in">
+
+@function{demo8}
+
+@function{piano_widget}
+
+<svg xml:space="preserve" width="161px" height="120">
+
+<!-- 
+     Copyright (c)  2005 Lauri Kaila.
+     Permission is granted to copy, distribute and/or modify this document
+     under the terms of the GNU Free Documentation License, Version 1.2
+     or any later version published by the Free Software Foundation;
+     with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+     A copy of the license is included in the section entitled "GNU
+     Free Documentation License".
+     
+     
+     
+     Intented to create a keyboard where key widths are
+     accurately in position. 
+     
+     See http://www.mathpages.com/home/kmath043.htm
+     for the math.
+     
+     This keyboard has following properties (x=octave width).
+     1. All white keys have equal width in front (W=x/7).
+     2. All black keys have equal width (B=x/12).
+     3. The narrow part of white keys C, D and E is W - B*2/3
+     4. The narrow part of white keys F, G, A, and B is W - B*3/4
+     
+-->
+
+<!-- White keys  -->
+<rect style="fill:white;stroke:black" x=  "0" y="0" width="23" height="120" />
+<rect style="fill:white;stroke:black" x= "23" y="0" width="23" height="120" />
+<rect style="fill:white;stroke:black" x= "46" y="0" width="23" height="120" />
+<rect style="fill:white;stroke:black" x= "69" y="0" width="23" height="120" />
+<rect style="fill:white;stroke:black" x= "92" y="0" width="23" height="120" />
+<rect style="fill:white;stroke:black" x="115" y="0" width="23" height="120" />
+<rect style="fill:white;stroke:black" x="138" y="0" width="23" height="120" />
+
+<!-- Black keys (overlap with the white keys) -->
+<rect style="fill:black;stroke:black" x="14.33333" y="0" width="13" height="80" />
+<rect style="fill:black;stroke:black" x="41.66666" y="0" width="13" height="80" />
+<rect style="fill:black;stroke:black" x="82.25" y="0" width="13" height="80" />
+<rect style="fill:black;stroke:black" x="108.25" y="0" width="13" height="80" />
+<rect style="fill:black;stroke:black" x="134.75" y="0" width="13" height="80" />
+
+</svg>
+
+@function{demo9}
+
+<h1>A form included from another web page</h1>
+
+NYI
+
+@function{main1}
+
+ <? nice1(void) ?>   <!-- include a style sheet -->
+ <? js1(void) ?>    <!-- and some javascript -->
+
+<h1>Turning HTML in Elang functions</h1>
+
+<p>HTML is a bit of a mess. It has no subroutines. HTML pages cannot
+<i>call</i> other pages - which makes them pretty useless.
+
+<p>If we want to <i>call</i> some part of an HTML file we need a way
+of partitioning the file into segments. To do this I have made what I call a 
+<b>.web</b> file.
+
+<p>From now on we can just call fragments of web pages just like
+they are erlang code. The <b>last</b> item in a call MUST produce a map.
+
+<h1>Calling fragments of html</h1>
+
+<? bar(In) ?>
+
+<p> Factorial 10 is <? factorial(10) ?>
+
+<h1>About</h1>
+
+<p>This is a fragment of HTML
+
+@function{bar}
+
+<p>This is bar
+
+@function{nice1}
+
+<style>
+body {margin-left:120px; background-color:#ffaabb}
+</style>
+
+@function{js1}
+
+<script>
+function foo(){
+    alert("js called");
+}
+</script>
+
+@erlang
+
+%% this gets put first after the module declaration
+
+-import(lib_html, [pre/1]).
+
+factorial(N) ->
+    #{html => integer_to_list(fac(N))}.
+
+fac(0) -> 1;
+fac(N) -> N * fac(N-1).
+
+reverse_h1(X) ->
+    #{html => ["<h1>", lists:reverse(X),"</h1>"]}.
+
+examples(L) ->
+    #{html => ["<table>",[row(I) || I <- L],"</table>"]}.
+
+row({I,Description}) ->
+    Func = atom_to_list(I),
+    Str = "test1.web?page=run_demo&arg=" ++ Func,
+    Link = ["<a href='",Str,"'>",Str,"</a>"],
+    ["<tr><td>",Description,"</td><td>",Link,"</td></tr>"].
+
+erl_show_the_code(Name) ->
+    Segs = app_compiler_vsn2:get_segments("./site/test1.web"),
+    Code = get_code(Name, Segs),
+    H = [code_css(),
+	 "<div class='code'><pre>", "<h2>@function{",Name,"}</h2>", lib_html:quote(Code), "</pre></div>"],
+    return_html(H).
+
+code_css() -> "<style>div.code {background:#a2a2a2;border:1px solid black;width:70%} </style>".
+
+get_code(Name, [{function0,Name,Code}|_]) ->
+      Code;
+get_code(Name, [_|T]) ->
+    get_code(Name, T);
+get_code(_Name, []) ->
+    "no code".
+
+return_html(H) ->
+    #{html => H}.
+
+show_the_code([_,{<<"arg">>,X}]) ->      
+    Name = binary_to_list(X),
+    erl_show_the_code(Name).
+
+run_the_code([_,{<<"arg">>,X}]) ->      
+    Func = list_to_atom(binary_to_list(X)),
+    io:format("Run:~p~n",[Func]),
+    apply(?MODULE, Func, [a]).
+

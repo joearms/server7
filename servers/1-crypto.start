@@ -1,0 +1,5 @@
+#{path => [],
+  description => "crypto library",
+  start => {application, start, [crypto]},
+  env => []}.
+

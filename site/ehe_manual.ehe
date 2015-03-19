@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<meta charset='UTF-8'/>
+<link rel='stylesheet' href='/layout_wide_sb.css' />
+
+<body>
+  <div id="header">
+    <?e SYS:banner() ?>
+  </div>
+  
+  <div id="sidebar">
+    Sidebar
+  </div>
+
+  <div id="content">
+
+    <h2>EHE manual</h2>
+    
+    <h2>EHE syntax and semantics</h2>
+    
+    <p>EHE is regular HTML (or XHTML) with embedded Erlang. EHE scripts
+    are interpreted and must have the file extension <b>.ehe</b></p>
+
+    <p>Blocks of Erlang code written <tt>&lt;?e ... ?></tt> can be placed
+    <i>Anywhere</i> in the code. When a block of Erlang code is encountered
+    it is assumed to consist of a sequcne of expressions. These expressions are
+    evaluanted in order, the value of the last expression in the seqence
+    is used as the <i>replacement value</i> of the block and 
+    will relace the origonal Erlang block in the EHE script.</p>
+
+    <p>The last value in the Erlang block must be an IO-list, atom,
+    binary, integer or float.  If the value is an IO-list it is
+    inserted into the text as-is, if it is an atom, integer, float or
+    binary it is converted to a string and the string is inserted into
+    the text.</p>
+
+    <p>Bindings to Erlang vaiables are propagated forwards between blocks.</p>
+
+    <p>Suppose we define <tt>&lt;?e Name = "joe", "" ?></tt> the replacement value of
+    this block is the value of the last expression in the sequence (ie an empty
+    string) and the binding <tt>Name = "joe"</tt> is propagated forward in the
+    text.</p>
+
+    <p>Later, we just have to say <tt>&lt?e Name ?></tt> to use the value of 
+    <tt>Name</tt></p>
+
+    <h2>Authentication</h2>
+
+    <p>EHE has a built-in notion of <i>The authenticated user</i>.
+    How authentication is performed depends upon the version of EHE and how it
+    is configured. When a EHE script is evaluated the variable <tt>Who</tt>
+    will contain the name (a binary) of the currently authenticated user (or
+    the binary <tt>&lt;&lt;"anonymous">></tt> if no user is authenticated.</p>
+
+    <h2>The SYS variable</h2>
+    
+    <p>The variable <tt>SYS</tt> contains a parameterised module which can be
+    called from EHE to access the environment. SYS provides a gateway
+    to the environment.</p>
+
+    <h2>The Database</h2>
+    
+    <p>EHE comes with a Key-Value database that can be accessed by calling
+    <tt>SYS:db_*</tt> functions. The database functions are <i>per-user</i>
+    so when we call <tt>&lt;?e SYS:db_get_key(Key) ?></tt> internally
+    we call soemthing like <tt>Some_db:get_key({user,Who,Key})</tt> where
+    <tt>Who</tt> is the currently authenticated user.</p>
+
+    <p>Exactly which database is used depends upon how EHE is configured.</p>
+
+    <p>No matter which database is used in the backend the user will always
+    call <tt>SYS:put_key(Key)</tt> so EHE scriprts will run the same way irrespective
+    of the actual datbase being used.</p>
+
+    <p>Backend databases can be chosed to be memory resitent,
+    fault-tolerent, massaive etc, depending upon the demands of the application
+    - irrexpective of this coice the EHE code will always be the same.</p>
+
+
+    
+
+    
+    
+    <h2>SYS commands</h2>
+
+    <h2>Installation</h2>
+    
+  </div>
+</body>
+
+

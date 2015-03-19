@@ -1,0 +1,38 @@
+/* set the padding here to match with the size of the top and right
+     sidebars */
+
+body {
+  padding-top:120px;
+  padding-left:100px;
+  padding-right:320px;
+ }
+
+ div#header {
+  background-color:#aabbcc;
+  position:fixed;
+  padding-left:10px;
+  top:0;
+  left:0;
+  width:500%;
+  height:50px;   /* so padding-left:70px */
+ }
+
+ div#sidebar{
+  background-color:#bbccee;
+  position:fixed;
+  padding-left:20px;
+  padding-right:10px;
+  top:50px;
+  right:0;
+  width:250px;   /* so padding-right in body:270px */
+  height:100%;
+ }
+
+ * html body{
+  overflow:hidden;
+ } 
+
+ * html div.content{
+  height:100%;
+  overflow:auto;
+ }

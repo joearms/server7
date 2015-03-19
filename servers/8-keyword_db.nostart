@@ -1,0 +1,6 @@
+#{path => ["${HOME}/Dropbox/experiments/server6/src"],
+  description => "full text db",     
+  start => {full_text_db, start, []},
+  env => []}.
+
+
