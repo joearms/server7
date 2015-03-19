@@ -146,10 +146,8 @@ process_request(["/"| Parts], ".web", File, [{<<"page">>,Page}|_]=Args, Zip, _) 
     F1 = remap(File),
     ?trace({her1,file,File,f1,F1}),
     InFile = F1,
-    OutFile = filename:rootname(InFile, ".web") ++ ".erl",
-
+    OutFile = "./tmp/" ++ filename:basename(InFile, ".web") ++ ".erl",
     Mod = list_to_atom(filename:basename(File,".web")),
-    
     ?trace({web,input,InFile,output,OutFile,mod,Mod,Args}),
     case recompile_and_load(InFile, OutFile, Mod) of 
 	ok ->

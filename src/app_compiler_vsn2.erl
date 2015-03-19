@@ -17,6 +17,11 @@
 %% @erlang
 %% ...
 
+batch([Atom]) ->
+    File = atom_to_list(Atom),
+    compile(File),
+    init:stop().
+
 
 get_page(Mod, Func, Args) ->
     case (catch get_page0(Mod, Func, Args)) of
@@ -39,11 +44,11 @@ compile(File) ->
     Processed = [process_segment(I) || I <- Segments],
     Frags = make_fragments(Processed),
     Erl = make_erlang(Processed),
-    Out = filename:rootname(File,".web") ++ ".erl.tmp",
+    Out = "../tmp/" ++ filename:rootname(File,".web") ++ ".erl.tmp",
     ?trace({out,Out,mod,Mod}),
     %% pull all the erlang to the front so we get module/imports ok
     file:write_file(Out, [header(Mod),Erl, Frags]),
-    FinalErl = filename:rootname(File,".web") ++ ".erl",
+    FinalErl = "../tmp/" ++ filename:rootname(File,".web") ++ ".erl",
     pretty(Out, FinalErl),
     io:format("Created: ~s~n",[FinalErl]).
 
