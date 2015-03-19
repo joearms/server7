@@ -5,7 +5,8 @@
 <p>The next form is created from a template:
 
 <? make_form(
-     [#{type => hidden, name => "fid", value => "abcdef124"},
+     [#{type => hidden, name =>"database", value => "mydb1"}, 
+      #{type => hidden, name => "fid", value => "abcdef124"},
       #{type => text, label => "Name:*", name => "name", value => "fred"},
       #{type => password, label => "Password:*", 
 	name => "password", value => "abc"},
@@ -138,12 +139,15 @@ row(#{type := radio, label := Prompt, name := Name, values := L}) ->
 	 [radio(I, Name) || I <- L]).
 
 
+read_checkbox(Name) ->
+    ["{name:'", Name,"',value:f.elements['",Name,"'].checked},\n"].
+
 default_read(Name) ->
     ["{name:'", Name,"',value:f.elements['",Name,"'].value},\n"].
 
-read_values({checked,Name}) -> default_read(Name);
+read_values({checked,Name}) -> read_checkbox(Name);
 read_values(nl)             -> [];
-read_values(Name)           -> default_read(Name).
+read_values(Name)           -> read_checkbox(Name).
 
 option(select) ->
     option({select,"-- Choose an option --"});
@@ -161,9 +165,11 @@ checkbox(Str) ->
 radio(br, _) -> "<br/>\n";
 radio({checked,Str}, Name) -> 
     ["<input type='radio' style='width:20px' name='",Name,
+     "' value='",Str,
      "' checked='checked'/>",Str,"\n"];
 radio(Str, Name) -> 
     ["<input type='radio' style='width:20px' name='",Name,
+     "' value='",Str,
      "'/>",Str,"\n"].
 
 row2(X,Y) ->
@@ -228,7 +234,8 @@ function ajax_query(mod, func, args, callback){
 
 echo(X) ->
     L = [{K,V} || {struct,[{<<"name">>,K},{<<"value">>,V}]} <- X],
-    lib_html:pre({this_data_stored_in_db,L,X}).
+    lib_html:pre({this_data_should_be_stored_in_the_db,L}).
+
    
 
 
