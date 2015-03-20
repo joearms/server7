@@ -6,12 +6,20 @@
 
 -description("Full text search engine using a dictionary").
 
-
 %% -compile(export_all).
 
 -export([make_dictionary/0, make_dict1/0, search/1, search/2, read_dict/0]).
 
+%% Usage:
+%% full_text_dict:make_dictionary().
+
+
 %% a full text search engine using a dictionary
+%% 1) create a dictionary
+%%    full_text_dict:make_dictionary().
+%%    this creates the file
+%%      os:getenv("HOME") ++ "/nobackup/erl_data/full_text.dict"
+
 
 make_dictionary() ->
     {T, Stats} = timer:tc(?MODULE, make_dict1, []),
@@ -20,7 +28,8 @@ make_dictionary() ->
     Stats#{time => Seconds, files_per_second => trunc(Files/Seconds)}.
 
 make_dict1() ->
-    Dir = elib2_misc:glob_dir("erl_data"),
+    Dir = os:getenv("HOME") ++ "/nobackup/erl_data",
+    elib2_misc:glob_dir(Dir),
     D = dict:new(),
     {_, D1} = elib2_find:files(os:getenv("HOME") ++ "/Dropbox/experiments",
 			       xmerl_regexp:sh_to_awk("*.erl"),

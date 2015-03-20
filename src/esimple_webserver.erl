@@ -171,7 +171,7 @@ process_request(Parts, Ext, File, Args, Zip, _) ->
     end.
 
 recompile_and_load(InFile, OutFile, Mod) ->
-    case out_of_date(InFile, OutFile) of
+    case elib2_misc:out_of_date(InFile, OutFile) of
 	true ->
 	    ?trace(recompiling),
 	    %% cross compile the source
@@ -189,30 +189,9 @@ recompile_and_load(InFile, OutFile, Mod) ->
 	    end;
 	false ->
 	    ?trace(module_not_recompiled),
-	    ok;
-	{error, Why} ->
-	    {error, Why}
+	    ok
     end.
 
-out_of_date(In, Out) ->
-    case filelib:is_file(In) of
-	true ->
-	    case filelib:is_file(Out) of
-		true ->
-		    %% check the time stamps
-		    Tsrc  = filelib:last_modified(In),
-		    Tdest = filelib:last_modified(Out),
-		    if Tsrc > Tdest -> true;
-		       true         -> false
-		    end;
-		false ->
-		    %% no output so we have to recompile
-		    true
-	    end;
-	false ->
-	    %% error input cannot be found
-	    {error, no_input}
-    end.
 
 %%----------------------------------------------------------------------
 %% process_request -- this where all event end up

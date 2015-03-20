@@ -1,6 +1,6 @@
 %% Copyright (c) 2006-2009 Joe Armstrong
 %% See MIT-LICENSE for licensing information.
-%% Time-stamp: <2015-03-04 12:45:37 ejoearm>
+%% Time-stamp: <2015-03-20 17:10:20 joearmstrong>
 
 -module(elib2_misc).
 
@@ -1490,19 +1490,29 @@ outfile(File, Ext) ->
 %% otherwise false.
 
 -spec out_of_date(Src::string(), Dest::string()) -> boolean().
+%% raises no_input
 
 out_of_date(In, Out) ->
-    case filelib:is_file(Out) of
+    case filelib:is_file(In) of
 	true ->
-	    case {last_modified(In), last_modified(Out)} of
-		{T1, T2} when T1 > T2 ->
-		    true;
-		_ ->
-		    false
+	    case filelib:is_file(Out) of
+		true ->
+		    %% check the time stamps
+		    Tsrc  = filelib:last_modified(In),
+		    Tdest = filelib:last_modified(Out),
+		    if Tsrc > Tdest -> true;
+		       true         -> false
+		    end;
+		false ->
+		    %% no output so we have to recompile
+		    true
 	    end;
 	false ->
-	    true
+	    %% error input cannot be found
+	    %% not sure why this would be called
+	    exit({out_of_date,no_input,In})
     end.
+
 
 %%----------------------------------------------------------------------
 %% @doc
@@ -2701,15 +2711,14 @@ to_str(X)                    -> X.
 
 %%----------------------------------------------------------------------
 
-glob_dir(Name) ->
-    Dest = os:getenv("HOME") ++ "/nobackup/" ++ Name ++ "/",
+glob_dir(Dest) ->
     case filelib:is_dir(Dest) of
 	true ->
 	    Dest;
 	false ->
 	    io:format("The directory ~s does not exist~n"
-		      "Please create it you wish to run this program~n"
-		      "*** Running this program might modify your erlang source code files~n"
-		      "*** and will write data to the above directory~n" ,[Dest]),
+		      "Please create it you wish to run this program~n",
+		      [Dest]),
 	    exit({eNoDir,Dest})
     end.
+
