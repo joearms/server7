@@ -142,7 +142,8 @@ file_to_term(F) ->
     binary_to_term(B).
 
 read_dict() ->
-    Dir = elib2_misc:glob_dir("erl_data"),
+    Dir = os:getenv("HOME") ++ "/nobackup/erl_data",
+    elib2_misc:glob_dir(Dir),
     File = Dir ++ "/full_text.dict",
     case file:read_file(File) of
 	{ok, Bin} ->

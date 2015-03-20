@@ -14,7 +14,6 @@
 
 -description("gen server interface to fulltext db").
 
-
 -behaviour(gen_server).
 
 %% API
