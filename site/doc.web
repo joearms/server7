@@ -1,0 +1,66 @@
+@markdown{main}
+
+# Bug?
+
+This is a and \a
+
+
+# Format of .web files
+
+`.web` files contain three types of objects.
+
+markdown blocks
+   These start `@markdown{name}` and contain markdown with embedded `ehe`
+
+html blocks
+   These start `@html{name}` and contain html with embedded `ehe`
+
+erlang code
+   This is started by a `@erlang` statent and contains any Erlang code 
+
+Here's an example
+
+    @markdown{x}
+    Factorial 20 is &amp;lt;? fact(20) ?>
+    ...
+    ... more markdown ...
+    &amp;lt;? ... or Erlang ?>
+    @html{y}
+     .. some html ...
+      &amp;lt;? ... some Erlang ?>
+    @erlang
+       Erlang code
+    @markdown{n1}
+       ... more markdown 
+
+
+## Example markdown section
+
+    @markdown{x}
+    Factorial 20 is &amp;lt;? fact(20) ?>
+    ...
+
+Evaluates to:
+
+So Factorial 20 is <? fact(30) ?>
+
+`fact(N)` was defined like this:
+
+    @erlang
+    fact(N) ->
+       #{html => integer_to_list(fac(N)) }.
+
+    fac(0) -> 1;
+    fac(N) -> N*fac(N-1).
+
+`fact(N)` __must__ return a `map` continung the tag `html`, whoes value
+is an io list. `fac(N)` is just a regular factorial function.
+
+@erlang
+
+fact(N) ->
+   #{html => integer_to_list(fac(N)) }.
+
+fac(0) -> 1;
+fac(N) -> N*fac(N-1).
+     

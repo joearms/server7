@@ -1,12 +1,14 @@
-@function{main}
+@html{main}
 
 <style>
-body {margin-left:100px}
+body { margin-left:120px}
 </style>
 
-<h1>Examples</h1>
+# Examples
 
 <li><a href="./test1.web?page=run_demo&arg=demo1">click me</a>
+
+<li><a href="./test1.web?page=md1&arg=md1">md1 test</a>
 
 
 <? examples([{demo1,"styling with a class"},
@@ -21,7 +23,14 @@ body {margin-left:100px}
 ]) ?>
 
 
-@function{run_demo}
+@markdown{md1}
+
+# This is markdown
+
+ 
+Factorial 30 is <? factorial(30) ?>
+
+@html{run_demo}
 
 <h1>Input</h1>
 
@@ -31,27 +40,27 @@ body {margin-left:100px}
 
 <? run_the_code(In) ?>
 
-@function{demo1}
+@html{demo1}
 
 <style>
-h1 {color: blue}
+h1 {color: red}
 </style>
 
 <h1 class='red'>I'm a red header1</h1>
 
 <p>We can style objects using CSS
 
-@function{demo2}
+@html{demo2}
 
 <p>CSS cannot reverse characters in a string but Erlang can
 
 <h1> <? #{html => lists:reverse("I'm a header")} ?> </h1>
 
-@function{demo3}
+@html{demo3}
 
 <p>Factorial 40 is <? factorial(40) ?>
 
-@function{demo4}
+@html{demo4}
 
 <button id="a" onclick="woo()">Click me and be amazed</button>
 
@@ -65,26 +74,26 @@ function woo(){
 
 </script>
 
-@function{demo5}
+@html{demo5}
 <svg width="100" height="100">
   <circle cx="50" cy="50" r="40" stroke="green" 
 	  stroke-width="4" fill="yellow" 
 	  />
 </svg>
 
-@function{demo6}
+@html{demo6}
 
 <? piano_widget(a) ?>
 
 
 
-@function{demo7}
+@html{demo7}
 
 <entry id="in">
 
-@function{demo8}
+@html{demo8}
 
-@function{piano_widget}
+@html{piano_widget}
 
 <svg xml:space="preserve" width="161px" height="120">
 
@@ -131,13 +140,13 @@ function woo(){
 
 </svg>
 
-@function{demo9}
+@html{demo9}
 
 <h1>A form included from another web page</h1>
 
 NYI
 
-@function{main1}
+@html{main1}
 
  <? nice1(void) ?>   <!-- include a style sheet -->
  <? js1(void) ?>    <!-- and some javascript -->
@@ -164,17 +173,17 @@ they are erlang code. The <b>last</b> item in a call MUST produce a map.
 
 <p>This is a fragment of HTML
 
-@function{bar}
+@html{bar}
 
 <p>This is bar
 
-@function{nice1}
+@html{nice1}
 
 <style>
 body {margin-left:120px; background-color:#ffaabb}
 </style>
 
-@function{js1}
+@html{js1}
 
 <script>
 function foo(){
@@ -210,7 +219,7 @@ erl_show_the_code(Name) ->
     Segs = app_compiler_vsn2:get_segments("./site/test1.web"),
     Code = get_code(Name, Segs),
     H = [code_css(),
-	 "<div class='code'><pre>", "<h2>@function{",Name,"}</h2>", lib_html:quote(Code), "</pre></div>"],
+	 "<div class='code'><pre>", "<h2>@html{",Name,"}</h2>", lib_html:quote(Code), "</pre></div>"],
     return_html(H).
 
 code_css() -> "<style>div.code {background:#a2a2a2;border:1px solid black;width:70%} </style>".

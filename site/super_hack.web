@@ -1,0 +1,36 @@
+@html{main}
+
+<? md(test) ?>
+
+@html{test}
+
+# I'm md
+
+<? fact(25) ?>
+
+@erlang
+
+%% md(FuncName) 
+%%   takes expanded ehe
+%%   and turns it into MD
+
+md(Func) ->
+    X = include(Func), 
+    IO = maps:get(html, X),
+    Bin = iolist_to_binary(IO),
+    Str = binary_to_list(Bin),
+    md_lib:string2html(Str).
+
+include(Func) ->
+    apply(super_hack, Func, [void]).	     
+
+
+fact(N) ->
+   #{html => ["factorial(", integer_to_list(N), ")=",
+              integer_to_list(fac(N))]}.
+
+fac(0) -> 1;
+fac(N) -> N*fac(N-1).
+
+
+

@@ -1,0 +1,8 @@
+@html{main}
+
+<? bug() ?>
+
+@erlang
+bug() ->
+  #{html => ["hello",foo()}.
+

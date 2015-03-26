@@ -1,4 +1,4 @@
-@function{main}
+@html{main}
 
 <!-- load the library -->
 <? jslib(void) ?>
@@ -17,7 +17,7 @@ function test(){
     }
 </script>
 
-@function{jslib}
+@html{jslib}
 
 <!-- put your js here -->
 

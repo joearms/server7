@@ -221,7 +221,7 @@ process_request1(Parts, ".ehe", File, Args, Bin) ->
     end;
 process_request1(["sites",Site,"books", Book,File],".md", _File, Args, Bin) ->
     ?trace({ho,Site,Book,File}),
-    %% step one assume .md contant ehe so we expand it
+    %% step one assume .md contains ehe so we expand it
     case ehe_vsn4:parse_string(binary_to_list(Bin)) of
 	{ok, Parse} ->
 	    ?trace({ehemd, parsed,Parse}),
@@ -260,7 +260,7 @@ make_html(L) ->
     tree_lib:tree_to_binary(Tree).
 
 header() ->
-    <<"<meta charset='UTF-8'>\n<link rel='stylesheet' href='style.css'/>\n">>.
+    <<"<meta charset='UTF-8'>\n<link rel='stylesheet' href='md.css'/>\n">>.
 
 
 expand_site_template(File, Site, Book, Content) ->

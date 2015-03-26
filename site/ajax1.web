@@ -1,4 +1,4 @@
-@function{main}
+@html{main}
 
 <!-- load the library -->
 <? jslib(void) ?>
@@ -28,7 +28,7 @@ function test(){
 echo(X) ->
    lib_html:pre(X).
 
-@function{jslib}
+@html{jslib}
 
 <!-- put your js here -->
 

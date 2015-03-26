@@ -1,0 +1,13 @@
+@html{a}
+A<br>
+@html{b}
+B<br>
+@html{main}
+Main html<br>
+<? test(void) ?>
+<? test(void) ?>
+@erlang
+test(_) ->
+    #{html => "test(erl)<br>",
+      once => [{test_once,a},{test_once,b}]}.
+

@@ -6,8 +6,6 @@
 
 -description("Yet another attempt at a markdown processor").
 
-
-
 -compile(export_all).
 
 -import(lists, [reverse/1, reverse/2]).

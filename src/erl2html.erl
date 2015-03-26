@@ -6,16 +6,12 @@
 
 -tags([erlang,html]).
 
-%% To run this:
-%%  1) edit erlhtml.conf
-%%  2) run erl2html:make_file_list().
-%%  3) run erl2html:refresh().
-
 %% make file list makes a list of files
 %% refresh updates all out of date files
 %% when there are multiple module the largest is chosen
 
 -export([
+	 help/0,
 	 refresh/0,
 	 make_file_list/0,
 	 erl2html/2,
@@ -25,6 +21,8 @@
 %% -compile(export_all).
 
 %% version 5 of the tagger
+
+
 
 %% Converting Erlang to html is *tricky*
 %%  We have the following goals:
@@ -69,6 +67,11 @@
 
 %% Normal use -- starts with a config file
 
+help() ->
+    io:format("1) edit erlhtml.conf~n"
+	      "2) run erl2html:make_file_list().~n"
+              "3) run erl2html:refresh().~n").
+
 refresh() ->
     {ok, [K]} = file:consult("./erl2html.conf"),
     #{outdir := O} = K,
@@ -83,6 +86,7 @@ refresh() ->
     %% When we have several files select the biggest
     Files4 = [biggest(L) || {_, L} <- Files3],
     io:format("~w files will be analysed~n",[length(Files4)]),
+    os:cmd("cp erl2html.css " ++ O1),
     lists:foreach(fun(I) -> refresh(I, O1) end, Files4).
 
 refresh(In, OutDir) ->

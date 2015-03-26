@@ -1,6 +1,6 @@
 @html{main}
 
-<? jslib(void) ?>
+<p>Uses ONCE -- development stopped here -- do not edit
 
 <p>The next form is created from a template:
 
@@ -24,15 +24,19 @@
 
 <div id="result"></div>
 
-@erlang
+@html{get_radio}
+<script>
+  function get_radio(r)
+  {
+    for(var i = 0; i < r.length; i++)
+    {
+	if(r[i].checked)return r[i].value;
+    }
+    return '';
+ }
+</script>
 
-test() ->
-    H = make_form(form()),
-    elib1_misc:check_io_list(H),
-    ok = file:write_file("tmp_auto_generate_form.html", [css(),H]).
-
-css() ->
-   "
+@html{css_form}
 <style> 
   form.myform table {
    border:0;  padding:2; spacing:1; width:600; bgcolor:#efefef;
@@ -52,7 +56,14 @@ form.myform td textarea {
     width:100%;
 
 }
-</style>".
+</style>
+
+@erlang
+
+test() ->
+    H = make_form(form()),
+    elib1_misc:check_io_list(H),
+    ok = file:write_file("tmp_auto_generate_form.html", [css_form(void),H]).
 
 form() ->
     [
@@ -71,42 +82,39 @@ make_ran() ->
     "form" ++ integer_to_list(T).
   
 make_form(F) ->
-    %% make a random number from the time
+    %% better to make abstracted HTML? - easier to write
+    Html = [make_form_code(F),
+	    make_read_code(F)],
+     #{html => Html,
+       once => [{form1,css_form},{form1,js_lib},{form1,get_radio}]}.
+
+make_form_code(F) ->
     Ran = make_ran(),
+    %% make a random number from the time
     {Hidden, Rows} = lists:partition(fun is_hidden/1, F),
-    Html = [css(),
-	    "<form class='myform' id='",Ran,"' onsubmit='return false;'>\n",
-	    [hide(I) || I <- Hidden],
-	    "<table>\n"
-	    "<colgroup align='left' width='30%'>\n"
-	    "<colgroup align='left' width='70%'>\n",
-	    [row(I) || I <- Rows],
-	    final_buttons(Ran),
-	    "</table>\n"
-	    "</form>",
-	    "<script>
-function get_radio(r)
-{
-    for(var i = 0; i < r.length; i++)
-    {
-	if(r[i].checked)return r[i].value;
-    }
-    return '';
-}
-</script>",
-     make_read_code(F)],
-     #{html => Html}.
+    ["<form class='myform' id='",Ran,"' onsubmit='return false;'>\n",
+     [hide(I) || I <- Hidden],
+     "<table>\n"
+     "<colgroup align='left' width='30%'>\n"
+     "<colgroup align='left' width='70%'>\n",
+     [row(I) || I <- Rows],
+     final_buttons(Ran),
+     "</table>\n"
+     "</form>"].
 
 is_hidden(#{type := hidden}) -> true;
 is_hidden(_) -> false.
 
 final_buttons(Ran) ->
-    ["<tr>
-       <td colspan='2'>  
+    tr(
+      ["<td colspan='2'>  
 	 <button><a href='#'>Close</a></button>
 	 <button><a href='#' onclick='read_me(\"",Ran,"\")' >Submit</a></button> 
-       </td> 
-      </tr>"]. 
+       </td>"]).
+
+tr(X) ->
+    ["<tr>",X,"</tr>"].
+
 
 hide(#{type := hidden, name := Name, value := Text}) ->
     ["<input type='hidden' name='",Name,"' value='",Text,"'/>\n"].
@@ -198,8 +206,8 @@ ajax_query('form', 'echo', data, callback);
 }
 </script>
 "].
-
-@html{jslib}
+ 
+@html{js_lib}
 
 <!-- put your js here -->
 

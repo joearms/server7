@@ -7,7 +7,7 @@
 
 test() ->
     H = make_form(form()),
-    elib1_misc:check_io_list(H),
+    elib2_misc:check_io_list(H),
     ok = file:write_file("tmp_auto_generate_form.html", [css(),H]).
 
 css() ->
