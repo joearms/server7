@@ -19,7 +19,7 @@ init(Req, #{request_handler := R, port := Port} = Env) ->
     File0 = binary_to_list(Path),
     %% expand_escapes expands %20 etc in the file name into blanks
     File = expand_escapes(File0),
-    ?trace({file,File,path,Path,args,Args,qs,Qs}),
+    %% ?trace({file,File,path,Path,args,Args,qs,Qs}),
     %% F is the file reader
     case R(File, Args, Req) of
 	{ok, Type, Bin} ->

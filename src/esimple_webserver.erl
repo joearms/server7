@@ -110,7 +110,7 @@ make_request_handler(ZIP) ->
     fun(File, Args, Req) ->
 	    Parts = filename:split(File),
 	    Ext   = filename:extension(File),
-	    ?trace({parts,Parts,ext,Ext}),
+	    %% ?trace({parts,Parts,ext,Ext}),
 	    process_request(Parts, Ext, File, Args, ZIP, Req)
     end.
 
@@ -121,6 +121,21 @@ remap("/" ++ File) ->
 remap(F) ->
     F.
 
+safe_apply(M,F,A) ->
+    case (catch apply(M,F,A)) of
+	{'EXIT', Why} ->
+	    lib_html:pre({apply,{M,F,A},failed,Why});
+	Other ->
+	    Other
+    end.
+
+process_request(["/","form_submitted.html"],
+		_Ext, _File, _Args, _Zip, Req) ->    
+    {ok, A, _} = cowboy_req:body_qs(Req),
+    io:format("************************************Form submitted:~p~n",[A]),
+    {ok,".html",<<"ok">>};
+
+
 process_request(["/","cgi",ModStr],_,_,Args, Zip, Req) ->
     Mod = list_to_atom(ModStr),
     case lists:member(Mod, mod_allow:allow()) of
@@ -130,25 +145,26 @@ process_request(["/","cgi",ModStr],_,_,Args, Zip, Req) ->
 	    {ok, ".html", "mod_not_allowed"}
     end;
 process_request(["/","weblib"],_,_,Args, Zip, Req) ->
-    ?trace({weblib,Args}),
+    %% ?trace({weblib,Args}),
     [{<<"mod">>,MB},{<<"func">>,FB}] = Args,
     Mod = bin2atom(MB),
     Func = bin2atom(FB),
     {ok, A, _} = cowboy_req:body_qs(Req),
+    %% ?trace({body_qs,A}),
     [{<<"string">>,Json}] = A,
     Erl = mochijson2:decode(Json),
-    ?trace({weblib,Mod,Func,Json,Erl}),
-    Result = apply(Mod, Func, [Erl]),
+    %% ?trace({weblib,Mod,Func,Json,Erl}),
+    Result = safe_apply(Mod, Func, [Erl]),
     {ok,".html",Result};
 
 process_request(["/"| Parts], ".web", File, [{<<"page">>,Page}|_]=Args, Zip, _) ->
 
     F1 = remap(File),
-    ?trace({her1,file,File,f1,F1}),
+    %% ?trace({her1,file,File,f1,F1}),
     InFile = F1,
     OutFile = "./tmp/" ++ filename:basename(InFile, ".web") ++ ".erl",
     Mod = list_to_atom(filename:basename(File,".web")),
-    ?trace({web,input,InFile,output,OutFile,mod,Mod,Args}),
+    %% ?trace({web,input,InFile,output,OutFile,mod,Mod,Args}),
     case recompile_and_load(InFile, OutFile, Mod) of 
 	ok ->
 	    Func = list_to_atom(binary_to_list(Page)),
@@ -160,7 +176,7 @@ process_request(["/"| Parts], ".web", File, [{<<"page">>,Page}|_]=Args, Zip, _) 
     end;
 process_request(Parts, Ext, File, Args, Zip, _) ->    
     F1 = remap(File),
-    ?trace({parts,Parts,f1,F1,ext,Ext}),
+    %% ?trace({parts,Parts,f1,F1,ext,Ext}),
     case file:read_file(F1) of
 	{ok, Bin} ->
 	    process_request1(Parts, Ext, File, Args, Bin);

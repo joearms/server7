@@ -1,0 +1,102 @@
+
+
+<input type="button" onclick="hide_modal('modal1');"
+       style="float:right;display:block;margin-bottom:5px;" 
+       value="Cancel" />
+
+<form id="form1"
+      method="post" target = "_" 
+      action="form_submitted.html">
+  <input type="hidden" name="form" value="form_note"/>
+  <table border="1" cellspacing="0" cellpadding="5" width="95%">
+    <tbody>
+      <tr>
+	<td align="right"><b>Title:</b></td>
+	<td><input type="text" style="width:100%;"/></td>
+      </tr>
+      
+      <tr>
+	<td align="right"><b>Tags:</b></td>
+	<td><input type="text" style="width:100%;"/></td>
+      </tr>
+      
+      <tr>
+	<td align="right"><b>URL:</b></td>
+	<td><input type="text" style="width:100%;"/></td>
+      </tr>
+      
+      <tr>
+	<td align="right"><b>Privacy:</b></td>
+	<td align="left" >
+	  <input type="radio" name="privacy" value="public" checked="checked"/> 
+	  <b>Normal</b> 
+	  <input type="radio" name="privacy" value="private"/> <b>Private</b> 
+	</td>
+      </tr>
+      
+	<tr>
+	  <td valign="top" align="right"><b>Reminder:</b></td>
+	<td>
+	  <b>Number of times</b>
+	  <input type="text" name="times" style="width:50px"/>
+	  <b>First time</b> <input name="first_date" type="date"/>
+	</td>
+      </tr>
+      
+      <tr>
+	<td valign="top" align="right"><b>Repeat:</b></td>
+	  <td>
+	    <input type="radio" name="repeat" value="never" checked="checked"/>
+	    <b>Never</b>
+
+	    <input type="radio" name="repeat" value="daily" />
+	    <b>Dayly</b>
+	
+	    <input type="radio" name="repeat" value="weekly"/>
+	    <b>Weekly</b>
+	    
+	    <input type="radio" name="repeat" value="monthly"/>
+	    <b>Monthly</b>
+	
+	    <input type="radio" name="repeat" value="yearly"/>
+	    <b>Yearly</b>
+	  </td>
+      </tr>
+	
+      <tr>
+	<td align="right" ><b>Country:</b> </td>
+	<td align="left" >
+	  <select name="country">
+	    <option value="0">----</option>
+	    <option value="54">Afghanistan</option>
+	    <option value="65">Albania</option>
+	    <option value="35">Algeria</option>
+	    <option value="68">Andorra</option>
+	    <option value="36">Angola</option>
+	    <option value="89">Antigua Barbuda</option>
+	    <option value="19">Argentina</option>
+	    <option value="20">Australia</option>
+	    <option value="37">Austria</option>
+	  </select>
+	</td>
+      </tr>
+
+      <tr>
+
+	<td align="left">
+	  <textarea name="text" cols="50" rows="10"></textarea>
+	</td>
+      </tr>
+      
+      <tr>
+	<td colspan="2" align="center">
+ 	  <input type="button" onclick="send_form_and_hide_modal('form1', 'modal1');" 
+		 value="Send" />
+	  <input type="reset"  value="Reset"/>
+	  <input type="button" onclick="hide_modal('modal1');" value="Cancel" />
+	</td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+

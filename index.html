@@ -1,247 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
+
+<link rel='stylesheet' href='./site/layout_left.css' />
+<link rel='stylesheet' href='./site/modal.css' />
+<script src="./site/my_lib.js"></script>
+
 <style>
   body{margin-left:200;
   width:70%;
   font-size:1.2em;
   }
+
+  .now {color:red}
+
+  .later {color:green}
+  
 </style>
 
-<h1>NOW</h1>
-
-<p>The <a href="./site/doc.web?page=main">DOC</a>
-
-<p>The <a href="./site/super_hack.web?page=main">super hack</a>
-
-
-<p>Read the <a href="./site/02-Talk.md">TALK</a>
-<p>Read the <a href="./site/01-Goals.md">Goals</a>
-
-<li><a href="./site/inline.md">inline ehe in md</a> 
-
-<li><a href="./site/bug.web?page=main">bug.web?page=main</a> 
-
-<li><a href="/Users/joearms/nobackup/erlmods/erl2html.html">erl2html</a>
-
-<p>Goal this form in a modal
-
-<li><a href="./site/test_modal.web?page=main">test_modal.web?page=main</a> 
-
-<p>Add headers can't do this yet
-
-<p>Adding once annotation (seems to work)
-
-
-<li><a href="./site/test_once.web?page=main">test_once.web?page=main</a> ** works
-
-<li><a href="./site/form1.web?page=main">form1.web?page=main</a> ** works
-
-Look in dustbin and try to fix form2.erl 
-
-
-<p>figure out a way to make this a .web app that will be started at boot
-
-<li><a href="site/search.html">Search</a> (does work)
-
-
-
-
-<h1>Later</h1>
-<p>Hot news flash: erl2html now works :-)
-
-
-
-
-
-<h1>Goals</h1>
-<p>Read the <a href="./site/01-Goals.md">statement of goals</a> first
-
-<h1>Working/Testing</h1>
-
-<h1>Works</h1>
-
-<li><a href="./site/test1.web?page=main">test1.web (page = main)</a>
-<p>and ..</p>
-
-<li><a href="site/test1.web?page=demo1">test1.web?page=demo1</a>
-<li><a href="./site/test1.web?page=demo2">test1.web?page=demo2</a>
-
-<li><a href="./site/form.web?page=main">form.web?page=main</a>
-<li><a href="./site/test1.ehe">test1.ehe</a>
-<li><a href="./site/chords.ehe">chords.ehe</a>
-<li><a href="./site/03-Markdown_Tests.md">03-Markdown_Tests.md</a> - buggy
-<li><a href="./site/my_modal2.html">my_modal2.html</a>
-<li><a href="./site/modal.web?page=main">modal.web</a>
-<li><a href="./chandler/new.html">chandler/new.html</a>
-<li><a href="./site/ajax1.web?page=main">ajax1.web?page=main</a>
-
-
-<h1>BUGs</h1>
-
-<li>Compiled -web pages end up in the top level directory
-stick in /tmp
-<li>calling a .web file fails if the second file was not compiled first
-
-
-<h1>Broken</h1>
-
-
-
-<li><a href="./site/weblib.web?page=main">weblib.web?page=main</a>
-
-
-
-
-
-
-<li><a href="search.html">search.html</a>
-
-<li><a href="./site/history.html">history.html</a>
-
-<li><a href="http://www.aypwip.org/webnote/">webnote</a>
-<li><a href="./site/browsable.html">browsable html</a>
-
-<li><a href="./site/add_tags.ehe">add tags</a>
-<li><a href="./site/ajax_test.html">ajax test</a>
-<li><a href="./site/tag_search.html">tag search</a>
-
-<li>**** movbe to site with templatyes ...
-
-<h1>Bugs</h1>
-<li><strike><a href="/src/bug.md">/src/bug.md</a></li></strike>
-
-<h1>Todo</h1>
-<li><a href="http://www.aypwip.org/webnote/">webnotes </a>
-<li>My annotation plugin</li>
-<li>~/publishable </li>
-<li>http://callmenick.com/2014/10/15/memory-game/</li>
-
-
-<h1>Tests:</h1>
-
-<ol>
-  <li><a href="/src/readme.html">/src/readme.html</a> - ok
-  <li><a href="/src/missing_file.html">/src/missing_file.html</a> - ok
-  <li><a href="/src/how.md">/src/how.md</a> - ok
-
-  <li><a href="/src/ehe_tests.ehe?arg1=1&arg2=2">/src/ehe_tests.ehe?arg1=1&arg2=2</a> check args are passed
-
-  <li><a href="/sites/demo1/books/doc/How_to.md">/sites/demo1/books/doc/howto.md</a>
-
-
-  <li><a href="/sites/styled1/books/doc/How_to.md">/sites/styled1/books/doc/howto.md</a>
-
-  <li><a href="/site/demo1/mod/fac.erl&n=10">/site/demo1/mod/fac.erl&n=10</a>
-  <li><a href="/site/demo1/page/ehe/test1.ehe&n=10">/site/demo1/page/ehe/test1.ehel&n=10</a>
-  <li><a href="/site/demo1/config/show">/site/demo1/config/show</a>
-  <li><a href="/site/demo1/config/edit">/site/demo1/config/edit</a>
-  <li><a href="/site/demo1/auth/login">/site/demo1/auth/login</a>
-</ol>
-
-<h1>REST INTERFACE</h1>
-
-<ul>
-  <li><b>./site/site/siteame//bookname/{$Name}</b> - causes a generalised site mechanism.
-  This displates all information in site/bookname open at page $Name useing a templte
-  </li>
-  <li><b>Name.ehe?arg1=...</b> causes ehe to be expanded</li>
-  <li><b>Name.md?arg1 ...</b> causes ehe expansion followd by markdown expansion</li>
-  <li><b>site/mod/modname/func?arg1=1,&arg2</b> causes erlang module to be called</li>
-</ul>
-
-
-<h1>Design</h1>
-
-<ol>
-<li>The webserver is a single file called webserver</li>
-<li><b>eserver -conf file.conf</b> with no config standard values are assumed</li>
-<li>The root is CWD</li>
-<li>Must be a directory called sites - or an entire web site
-In a zip file (called mysite.zip)
-</li>
-</ol>
-
-<h1>Site directory structure</h1>
-
-Use the tree command to see this
-
-
-
-
-<h1>Top</h1>
-
-<li><a href="./site/test1.wf">test1.wf</a>
-<li><a href="./site/template.ehe?page=design.html">template.ehe?page=design.html</a>
-
-<h1>SITE interface</h1>
-
-<li><a href="./site/site/ideas/one.md">./site/ideas/one.md?Args</a>
-
-<h2>Logic</h2>
-
-<p>If we use the site interface we do the following:
-
-<ol>
-  <li>Look in site/template/page.ehe
-  this contins a template with variables
-  Content, Sidbar
-  <li>Set SideBar = the *'s in /site/books/ideas/*
-  <li>Let X = /site/books/ideas/one.md
-  <li>Let X1 = ehe_exand(X, SYS ++ Args)
-  <li>Let Content = md2html(X1)
-  <li>Let Page = ehe_expand(template, #{Content => ...}
-</ol>
-
-<h1>The File Getter Interface</h1>
-
-<p>There is some Fun <b>get_file(File) -> {ok, Bin} | error</b>
-That knows how to get files.</p>
-
-<h1>MOD interface</h1>
-
-<li><a href="./mod/erlfac?n=12">./mod/erlfac?n=12</a>
-
-This calls erlfac:fac(#{n=>12} to be called.
-
-<h1>Index</h1>
-
-<li><a href="main.html">Main</a>
-<li><a href="design.ehe">Design</a>
-<li><a href="doc.html">documentation</a>
-<li><a href="rectangles.html">rectangles</a>
-<li><a href="music.html">music notation</a>
-
-<h1>Inspiration</h1>
-
-<li><a href="http://purecss.io">purecss.io</a>
-<li><a href="http://mourner.github.io/dead-simple-grid/">Dead Simple Grid</a>
-<li><a href="http://smashfreakz.com/2013/04/jquery-pinterest-layout/">7 Jquery Plugins to create Pinterest Like Layouts</a>
-
-<li><a href="http://www.wookmark.com/jquery-plugin">Wookmark jQuery plugin</a>
-
-
-<h1>Markdown tests</h1>
-
-<li><a href="10-Doc.md">10-Doc.md</a>
-
-<h1>To Do</h1>
-
-<li><strike>Open on any port</strike>
-<li><strike>favicon.ico support</strike>
-<li>EHE
-
-<h1>Pure</h1>
-
-<li><a href="play.html">play.html</a>
-
-<h1>CS</h1>
-<li><a href="http://mincss.com/index.html">mincss</a>
-<li><a href="http://imperavi.com/kube/">kube</a>
-<li><a href="http://mourner.github.io/dead-simple-grid/">dead simple grid</a>
-
-
-<h1>EHE tests</h1>
-<li><a href="/site/index.ehe">index.ehe</a>
-<li><a href="/site/fac.ehe">fac.ehe</a>
-<li><a href="/site/tests.ehe">tests.ehe</a>
-<li><a href="/site/ehe_manual.ehe">ehe_manual.ehe</a>
+<body>
+
+  <div id="header">
+    <!-- interface to the modal 
+    when you click in the select box a form called
+    form_tweet.html etc. will be loaded into the modal region -->
+    <select id="select1" name="country">
+      <option value="form_tweet.html">Tweet</option>
+      <option value="form_note.html">Note</option>
+      <option value="form_reminder.html">Reminder</option>
+      <option value="form_todo.html">Todo</option>
+      <option value="form_now2later.html">Now -> Later</option>
+      <option value="form_later2now.html">Later -> Now</option>
+    </select>
+    <button onclick="modal_form('select1')">create</button>
+
+  </div>
+
+  <div id="sidebar">
+    <a href="#modal_notes">Modal Notes</a>
+  </div>
+
+  <div id="content">
+    <div class="lightbox" id="modal1">
+      <div class="box">
+	<div id="modal1_inside">
+	  This is the stuff inside the modal
+	</div>
+      </div>
+    </div>
+
+    <h1 class="now">NOW</h1>
+
+    <li>Books</li>
+
+    
+    
+    <li><a href="music_edit.html">Music editor</a>
+    
+    <li>Stand alone form in a file that looks nice
+    <li><strike>Three panel layout</strike>
+    <li>Modal Form with button at top
+
+    <h1 class="done">DONE</h1>
+
+    <li><a href="site/clock1.html">clock demo using websockets</a> works
+    <li><a href="site/svg1.html">svg manipulation through websockets</a>
+
+
+    <h1 class="later">Later</h1>
+
+    <p>The <a href="./site/doc.web?page=main">DOC</a>
+
+    <p>The <a href="./site/super_hack.web?page=main">super hack</a>
+
+
+    <p>Read the <a href="./site/02-Talk.md">TALK</a>
+    <p>Read the <a href="./site/01-Goals.md">Goals</a>
+    
+    <li><a href="./site/inline.md">inline ehe in md</a> 
+    
+    <li><a href="./site/bug.web?page=main">bug.web?page=main</a> 
+    
+    <li><a href="/Users/joearms/nobackup/erlmods/erl2html.html">erl2html</a>
+    
+    <p>Goal this form in a modal
+    
+    <li><a href="./site/test_modal.web?page=main">test_modal.web?page=main</a> 
+    
+    <p>Add headers can't do this yet
+    
+    <p>Adding once annotation (seems to work)
+    
+    
+    <li><a href="./site/test_once.web?page=main">test_once.web?page=main</a> ** works
+
+    <li><a href="./site/form1.web?page=main">form1.web?page=main</a> ** works
+    
+    Look in dustbin and try to fix form2.erl 
+    
+    
+    <p>figure out a way to make this a .web app that will be started at boot
+    
+    <li><a href="site/search.html">Search</a> (does work)
+    
+    
+    
+    
+    
+    <p>Hot news flash: erl2html now works :-)
+    
+    
+    
+    
+    <h1>Goals</h1>
+    <p>Read the <a href="./site/01-Goals.md">statement of goals</a> first
+    
+    <h1>Working/Testing</h1>
+    
+    <h1>Works</h1>
+    
+    <li><a href="./site/test1.web?page=main">test1.web (page = main)</a>
+    <p>and ..</p>
+    
+    <li><a href="site/test1.web?page=demo1">test1.web?page=demo1</a>
+    <li><a href="./site/test1.web?page=demo2">test1.web?page=demo2</a>
+    
+    <li><a href="./site/form.web?page=main">form.web?page=main</a>
+    <li><a href="./site/test1.ehe">test1.ehe</a>
+    <li><a href="./site/chords.ehe">chords.ehe</a>
+    <li><a href="./site/03-Markdown_Tests.md">03-Markdown_Tests.md</a> - buggy
+    <li><a href="./site/my_modal2.html">my_modal2.html</a>
+    <li><a href="./site/modal.web?page=main">modal.web</a>
+    <li><a href="./chandler/new.html">chandler/new.html</a>
+    <li><a href="./site/ajax1.web?page=main">ajax1.web?page=main</a>
+    
+    
+    <h1>BUGs</h1>
+    
+    <li>Compiled -web pages end up in the top level directory
+    stick in /tmp
+    <li>calling a .web file fails if the second file was not compiled first
+    
+    
+    <h1>Broken</h1>
+    
+    
+    
+    <li><a href="./site/weblib.web?page=main">weblib.web?page=main</a>
+    
+    
+    
+    
+    
+    <li><a href="search.html">search.html</a>
+    
+    <li><a href="./site/history.html">history.html</a>
+    
+    <li><a href="http://www.aypwip.org/webnote/">webnote</a>
+    <li><a href="./site/browsable.html">browsable html</a>
+    
+    <li><a href="./site/add_tags.ehe">add tags</a>
+    <li><a href="./site/ajax_test.html">ajax test</a>
+    <li><a href="./site/tag_search.html">tag search</a>
+    
+    <li>**** movbe to site with templatyes ...
+    
+    <h1>Bugs</h1>
+    <li><strike><a href="/src/bug.md">/src/bug.md</a></li></strike>
+    
+    <h1>Todo</h1>
+    <li><a href="http://www.aypwip.org/webnote/">webnotes </a>
+    <li>My annotation plugin</li>
+    <li>~/publishable </li>
+    <li>http://callmenick.com/2014/10/15/memory-game/</li>
+    
+    
+    <h1>Tests:</h1>
+    
+    <ol>
+      <li><a href="/src/readme.html">/src/readme.html</a> - ok
+      <li><a href="/src/missing_file.html">/src/missing_file.html</a> - ok
+      <li><a href="/src/how.md">/src/how.md</a> - ok
+      
+      <li><a href="/src/ehe_tests.ehe?arg1=1&arg2=2">/src/ehe_tests.ehe?arg1=1&arg2=2</a> check args are passed
+      
+      <li><a href="/sites/demo1/books/doc/How_to.md">/sites/demo1/books/doc/howto.md</a>
+      
+      
+      <li><a href="/sites/styled1/books/doc/How_to.md">/sites/styled1/books/doc/howto.md</a>
+      
+      <li><a href="/site/demo1/mod/fac.erl&n=10">/site/demo1/mod/fac.erl&n=10</a>
+      <li><a href="/site/demo1/page/ehe/test1.ehe&n=10">/site/demo1/page/ehe/test1.ehel&n=10</a>
+      <li><a href="/site/demo1/config/show">/site/demo1/config/show</a>
+      <li><a href="/site/demo1/config/edit">/site/demo1/config/edit</a>
+      <li><a href="/site/demo1/auth/login">/site/demo1/auth/login</a>
+    </ol>
+    
+    <h1>REST INTERFACE</h1>
+    
+    <ul>
+      <li><b>./site/site/siteame//bookname/{$Name}</b> - causes a generalised site mechanism.
+      This displates all information in site/bookname open at page $Name useing a templte
+      </li>
+      <li><b>Name.ehe?arg1=...</b> causes ehe to be expanded</li>
+      <li><b>Name.md?arg1 ...</b> causes ehe expansion followd by markdown expansion</li>
+      <li><b>site/mod/modname/func?arg1=1,&arg2</b> causes erlang module to be called</li>
+    </ul>
+    
+    
+    <h1>Design</h1>
+    
+    <ol>
+      <li>The webserver is a single file called webserver</li>
+      <li><b>eserver -conf file.conf</b> with no config standard values are assumed</li>
+      <li>The root is CWD</li>
+      <li>Must be a directory called sites - or an entire web site
+      In a zip file (called mysite.zip)
+      </li>
+    </ol>
+    
+    <h1>Site directory structure</h1>
+    
+    Use the tree command to see this
+    
+    
+    
+    
+    <h1>Top</h1>
+    
+    <li><a href="./site/test1.wf">test1.wf</a>
+    <li><a href="./site/template.ehe?page=design.html">template.ehe?page=design.html</a>
+    
+    <h1>SITE interface</h1>
+    
+    <li><a href="./site/site/ideas/one.md">./site/ideas/one.md?Args</a>
+    
+    <h2>Logic</h2>
+    
+    <p>If we use the site interface we do the following:
+    
+    <ol>
+      <li>Look in site/template/page.ehe
+      this contins a template with variables
+      Content, Sidbar
+      <li>Set SideBar = the *'s in /site/books/ideas/*
+      <li>Let X = /site/books/ideas/one.md
+      <li>Let X1 = ehe_exand(X, SYS ++ Args)
+      <li>Let Content = md2html(X1)
+      <li>Let Page = ehe_expand(template, #{Content => ...}
+    </ol>
+    
+    <h1>The File Getter Interface</h1>
+    
+    <p>There is some Fun <b>get_file(File) -> {ok, Bin} | error</b>
+    That knows how to get files.</p>
+    
+    <h1>MOD interface</h1>
+    
+    <li><a href="./mod/erlfac?n=12">./mod/erlfac?n=12</a>
+    
+    This calls erlfac:fac(#{n=>12} to be called.
+    
+    <h1>Index</h1>
+    
+    <li><a href="main.html">Main</a>
+    <li><a href="design.ehe">Design</a>
+    <li><a href="doc.html">documentation</a>
+    <li><a href="rectangles.html">rectangles</a>
+    <li><a href="music.html">music notation</a>
+    
+    <h1>Inspiration</h1>
+    
+    <li><a href="http://purecss.io">purecss.io</a>
+    <li><a href="http://mourner.github.io/dead-simple-grid/">Dead Simple Grid</a>
+    <li><a href="http://smashfreakz.com/2013/04/jquery-pinterest-layout/">7 Jquery Plugins to create Pinterest Like Layouts</a>
+    
+    <li><a href="http://www.wookmark.com/jquery-plugin">Wookmark jQuery plugin</a>
+    
+    
+    <h1>Markdown tests</h1>
+    
+    <li><a href="10-Doc.md">10-Doc.md</a>
+    
+    <h1>To Do</h1>
+    
+    <li><strike>Open on any port</strike>
+    <li><strike>favicon.ico support</strike>
+    <li>EHE
+    
+    <h1>Pure</h1>
+    
+    <li><a href="play.html">play.html</a>
+    
+    <h1>CS</h1>
+    <li><a href="http://mincss.com/index.html">mincss</a>
+    <li><a href="http://imperavi.com/kube/">kube</a>
+    <li><a href="http://mourner.github.io/dead-simple-grid/">dead simple grid</a>
+    
+    
+    <h1>EHE tests</h1>
+    <li><a href="/site/index.ehe">index.ehe</a>
+    <li><a href="/site/fac.ehe">fac.ehe</a>
+    <li><a href="/site/tests.ehe">tests.ehe</a>
+    <li><a href="/site/ehe_manual.ehe">ehe_manual.ehe</a>
+    </li>
+
+    <a name="modal_notes"></a>
+    
+    <h1>Modal Notes</h1>
+
+    <p>We want to define what happens in the modal with ajax callback
+    and NOT jQuery</p>
+    
+
+  </div>
+  

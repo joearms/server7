@@ -84,7 +84,7 @@ refresh() ->
     Warn = [{Mod,length(L)} || {Mod,L} <- Files3, length(L) > 1],
     io:format("** Duplicates~p~n",[Warn]),
     %% When we have several files select the biggest
-    Files4 = [biggest(L) || {_, L} <- Files3],
+    Files4 = [biggest_file(L) || {_, L} <- Files3],
     io:format("~w files will be analysed~n",[length(Files4)]),
     os:cmd("cp erl2html.css " ++ O1),
     lists:foreach(fun(I) -> refresh(I, O1) end, Files4).
@@ -102,10 +102,11 @@ refresh(In, OutDir) ->
 
 
 %% if there is one file then it is the biggest
+%% otherwise sort the file by size and choose the largest
 
-biggest([X]) ->
+biggest_file([X]) ->
     X;
-biggest(L) ->
+biggest_file(L) ->
     L1 = [{filelib:file_size(I), I} || I <- L],
     {_, File} = hd(lists:reverse(lists:sort(L1))),
     File.

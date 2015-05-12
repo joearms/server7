@@ -30,14 +30,21 @@ start_server({N, Name, F}) ->
 	    init:stop()
     end.
 
-do_start(N, Name,  #{path := P, start:={M,F,A}, env := E, description := D}) ->
+do_start(N, Name,  #{path := P, env := E, description := D} = X) ->
     io:format("~w : ~s :: Starting: ~s~n",[N, Name, D]),
     P1 = [elib2_misc:expand_env_vars(I) || I <- P],
     io:format("P1=~p~n",[P1]),
     [code:add_patha(I) || I <- P1],
-    V = (catch apply(M,F,A)),
-    io:format("starter: apply(~p,~p,~p) => ~p~n",[M,F,A,V]),
+    do_start(X),
     true.
+
+do_start(#{start := {M,F,A}}) ->
+    V = (catch apply(M,F,A)),
+    io:format("starter: apply(~p,~p,~p) => ~p~n",[M,F,A,V]);
+do_start(_) ->
+    void.
+
+
 
 servers() ->
     L = filelib:wildcard("servers/*.start"),

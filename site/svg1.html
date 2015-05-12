@@ -1,0 +1,24 @@
+<script type="text/javascript" src="./websock.js"></script>
+
+<style>
+body { margin-left: 200px}
+</style>
+
+<body>
+  <h1>SVG1</h1>
+  <div id="clock"></div>
+    <!-- define a div where the output will go -->
+    <div id="svg"></div>
+    <button onclick="send_erlang({clicked:'changered'});">Change red circle</button>
+    <button onclick="send_erlang({clicked:'delblue'});">Delete blue</button>
+    <button onclick="send_erlang({clicked:'addtree'});">Add tree</button>
+
+    <p>Change red circle changes the red circle to green and makes it larger.</p>
+    <p>Delete blue removes the blue circle</p>
+    <p>Add tree adds an orange cicle object to the svg drawing area</p>
+<script>
+
+connect_to_erlang("localhost", 8080, "svg1");
+
+
+</script>

@@ -1,0 +1,55 @@
+
+<h1>Form reminder (needs edit)</h1>
+
+<form id="form1"
+      method="post" target = "_" 
+      action="form_submitted.html">
+  <input type="hidden" name="form" value="form_reminder"/>
+ <table border="1" cellspacing="0" cellpadding="5" width="95%">
+    <tbody>
+      <tr>
+	<td valign="top" align="right"><b>Reminder:</b></td>
+	<td>
+	  <b>Number of times</b>
+	  <input type="text" name="times" style="width:50px"/>
+	  <br>
+	  <b>First time</b> <input name="first_date" type="date"/>
+	</td>
+      </tr>
+
+      <tr>
+	<td valign="top" align="right"><b>Repeat:</b></td>
+	<td>
+	  <input type="radio" name="repeat" value="never" checked="checked"/>
+	  <b>Never</b>
+	  
+	  <input type="radio" name="repeat" value="daily" />
+	  <b>Dayly</b>
+	  
+	    <input type="radio" name="repeat" value="weekly"/>
+	    <b>Weekly</b>
+	    
+	    <input type="radio" name="repeat" value="monthly"/>
+	    <b>Monthly</b>
+	    
+	    <input type="radio" name="repeat" value="yearly"/>
+	    <b>Yearly</b>
+	  </td>
+      </tr>
+      <tr>
+	<td align="right" valign="top"><b>Text:</b></td>
+	<td align="left">
+	  <textarea name="text" cols="50" rows="10">
+	  </textarea>
+	</td>
+      </tr>
+    </tbody>
+ </table>
+ 
+
+  <input type="button" onclick="send_form_and_hide_modal('form1', 'myform1');" 
+	 value="Send" />
+  <input type="reset"  value="Reset"/>
+  <input type="button" onclick="hide_modal('modal1');" value="Cancel" />
+</form>
+

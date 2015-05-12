@@ -1,0 +1,16 @@
+
+<h1>Form Tweet (needs edit)</h1>
+
+<form id="form1"
+      method="post" target = "_" 
+      action="form_submitted.html">
+  <input type="hidden" name="form" value="form_tweet"/>
+  <textarea name="text" cols="50" rows="10">
+</textarea>
+  <br>
+  <input type="button" onclick="send_form_and_hide_modal('form1', 'myform1');" 
+	 value="Send" />
+  <input type="reset"  value="Reset"/>
+  <input type="button" onclick="hide_modal('modal1');" value="Cancel" />
+</form>
+
