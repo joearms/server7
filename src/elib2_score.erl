@@ -42,8 +42,8 @@ add(Term, Score, {container,N,L}) ->
     L2 = trim(N, L1),
     {container, N, L2}.
 
-inject(Term, Score, [{X,S}|T]) when S > Score -> [{X,S}|inject(Term, Score, T)];
-inject(Term, Score, T)                        -> 
+inject(Term, Score, [{X,S}|T]) when S > Score -> [{X,S}| inject(Term, Score, T)];
+inject(Term, Score, T)                        ->
     [{Term,Score}|remove_term(Term, T)].
 
 remove_term(H,    [{H,_}|T])    -> T;
